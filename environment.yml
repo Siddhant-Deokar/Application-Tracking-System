@@ -1,0 +1,7 @@
+name: your_env_name  # Replace this with your desired environment name
+dependencies:
+  - python=3.11
+  - spacy
+  - pip
+  - pip:
+    - pdfminer.six
