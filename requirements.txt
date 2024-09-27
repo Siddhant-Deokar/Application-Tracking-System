@@ -1,2 +1,3 @@
-spacy==3.5.0
-pdfminer.six==20201018
+spacy==3.5.2  # Or the correct version of SpaCy you're using
+pdfminer.six==20221105  # For PDF extraction
+streamlit==1.18.1 
