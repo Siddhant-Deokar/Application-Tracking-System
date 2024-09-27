@@ -3,6 +3,13 @@ from preprocessing import ResumePreprocessor
 
 class JdParser:
     def parse_jd(self, jd_text):
+        try:
+            # Attempt to load the model
+            self.nlp = spacy.load("en_core_web_sm")
+        except OSError:
+            # If the model is not available, download and then load it
+            download("en_core_web_sm")
+            self.nlp = spacy.load("en_core_web_sm")
         """Parses the job description text."""
         # Extract skills using the preprocessor
         preprocessor = ResumePreprocessor()
