@@ -3,6 +3,10 @@ import json
 import spacy
 from spacy.matcher import Matcher
 from pdfminer.high_level import extract_text
+from spacy.cli import download
+
+if not spacy.util.is_package("en_core_web_sm"):
+    download("en_core_web_sm")
 
 class ResumePreprocessor:
     def __init__(self):
