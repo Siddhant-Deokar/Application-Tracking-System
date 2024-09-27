@@ -3,14 +3,19 @@ import json
 import spacy
 from spacy.matcher import Matcher
 from pdfminer.high_level import extract_text
+import os
 from spacy.cli import download
 
-if not spacy.util.is_package("en_core_web_sm"):
-    download("en_core_web_sm")
 
 class ResumePreprocessor:
     def __init__(self):
+        try:
+            spacy.load('en_core_web_sm')
+        except OSError:
+            # If the model is not found, download it
+            download("en_core_web_sm")
         self.nlp = spacy.load('en_core_web_sm')
+        
         self.matcher = Matcher(self.nlp.vocab)
 
     def extract_text_from_pdf(self, pdf_path):
