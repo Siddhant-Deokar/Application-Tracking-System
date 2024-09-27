@@ -10,11 +10,12 @@ from spacy.cli import download
 class ResumePreprocessor:
     def __init__(self):
         try:
-            spacy.load('en_core_web_sm')
+            # Attempt to load the model
+            self.nlp = spacy.load("en_core_web_sm")
         except OSError:
-            # If the model is not found, download it
+            # If the model is not available, download and then load it
             download("en_core_web_sm")
-        self.nlp = spacy.load('en_core_web_sm')
+            self.nlp = spacy.load("en_core_web_sm")
         
         self.matcher = Matcher(self.nlp.vocab)
 
