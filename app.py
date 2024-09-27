@@ -39,6 +39,13 @@ def calculate_ats_score(extracted_skills, extracted_jd_skills, education, educat
 
 
 def main():
+    try:
+            # Attempt to load the model
+            self.nlp = spacy.load("en_core_web_sm")
+        except OSError:
+            # If the model is not available, download and then load it
+            download("en_core_web_sm")
+            self.nlp = spacy.load("en_core_web_sm")
     st.title("ATS Score Calculator")
 
     # Upload Resume and JD as PDF
