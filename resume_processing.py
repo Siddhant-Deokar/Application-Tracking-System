@@ -4,6 +4,13 @@ preprocessor = ResumePreprocessor()
 
 class ResumeParser:
     def parse_resume(self, resume_text):
+        try:
+            # Attempt to load the model
+            self.nlp = spacy.load("en_core_web_sm")
+        except OSError:
+            # If the model is not available, download and then load it
+            download("en_core_web_sm")
+            self.nlp = spacy.load("en_core_web_sm")
         # Extract name, contact number, email, etc. from the resume_text
         name = preprocessor.extract_name(resume_text)
         contact_number = preprocessor.extract_contact_number_from_resume(resume_text)
